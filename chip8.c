@@ -288,9 +288,9 @@ void step(chip8State *chip8)
 #ifdef COSMAC
             chip8->registers[(instruction & 0x0F00) >> 8] = chip8->registers[(instruction & 0x00F0) >> 4];
 #endif
-            bool carry = (chip8->registers[(instruction & 0x0F00)] & 0x01);
+            uint8_t carry = chip8->registers[(instruction & 0x0F00)] & 0x1;
             chip8->registers[(instruction & 0x0F00) >> 8] = (chip8->registers[(instruction & 0x0F00) >> 8] >> 1) & 0x7F;
-            chip8->registers[0xF] = carry ? 0x1 : 0x0;
+            chip8->registers[0xF] = carry;
         }
         break;
 
@@ -316,9 +316,9 @@ void step(chip8State *chip8)
 #ifdef COSMAC
             chip8->registers[(instruction & 0x0F00) >> 8] = chip8->registers[(instruction & 0x00F0) >> 4];
 #endif
-            bool carry = (chip8->registers[(instruction & 0x0F00)] & 0x80);
+            uint8_t carry = ((chip8->registers[(instruction & 0x0F00)] & 0x80) >> 7) & 0x1;
             chip8->registers[(instruction & 0x0F00) >> 8] = (chip8->registers[(instruction & 0x0F00) >> 8] << 1) & 0xFE;
-            chip8->registers[0xF] = carry ? 0x1 : 0x0;
+            chip8->registers[0xF] = carry;
         }
         break;
 
