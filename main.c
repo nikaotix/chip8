@@ -70,7 +70,6 @@ int main(int argc, char **argv)
         // open("5-quirks.ch8", chip8);
         // open("6-keypad.ch8", chip8);
         // open("7-beep.ch8", chip8);
-        open("Cave.ch8", chip8);
     }
     else
     {
